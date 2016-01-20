@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lixing.ibatis.mapper.TeacherStudentMapper">
+	<parameterMap type="TeacherStudent" id="parameterTeacherStudentMap">
+		<parameter property="studentId"/>
+		<parameter property="teacherId"/>
+	</parameterMap>
+	
+	<insert id="insertTeacherStudent"  parameterMap="parameterTeacherStudentMap">
+		INSERT INTO t_teacher_student(student_id,teacher_id)
+		VALUES(#{studentId},#{teacherId})
+	</insert>	
+	
+	<!-- 根据一个老师ID,查看这个老师的所有学生-->
+	<resultMap type="Student" id="resultStudentMap_2">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="sex" column="sex"/>
+		<result property="age" column="age"/>
+	</resultMap> 
+	<select id="getStudentForTeacherId" resultMap="resultStudentMap_2" parameterType="int">
+		SELECT ts.id,ts.name,ts.sex,ts.age
+		FROM t_student ts,t_teacher_student tt
+		WHERE ts.id=tt.student_id AND tt.teacher_id=#{value}
+	</select>
+	
+	<!-- 根据一个学生ID,查看这个学生所对应的老师-->
+	<resultMap type="Teacher" id="resultTeacherMap_2">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="sex" column="sex"/>
+		<result property="age" column="age"/>
+	</resultMap> 
+	<select id="getTeacherForStudentId" resultMap="resultTeacherMap_2" parameterType="int">
+		SELECT tr.id,tr.name,tr.sex,tr.age 
+		FROM t_teacher tr,t_teacher_student ts
+		WHERE tr.id=ts.teacher_id AND ts.student_id=#{value}
+	</select>
+</mapper>	 
