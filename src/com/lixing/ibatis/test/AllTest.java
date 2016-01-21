@@ -97,11 +97,14 @@ public class AllTest {
 		Student student=studentMapper.getStudent(14);
 		List<Teacher> list=student.getTeacherList();
 		System.out.println(student.getId()+"\t"+student.getName()+"\t"+student.getSex());
-		for(Teacher s:list){
-			System.out.println("\t \t --:"+s.getId()+"\t"+s.getName()+"\t"+s.getSex()+"\t"+s.getAge());
-		}
+		//for(Teacher s:list){
+			//System.out.println("\t \t --:"+s.getId()+"\t"+s.getName()+"\t"+s.getSex()+"\t"+s.getAge());
+		//}
 		session.commit();
 	}
+	
+	
+	
 	
 	@After
 	public void after(){

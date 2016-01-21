@@ -24,7 +24,7 @@
 		<result property="sex" column="sex"/>
 		<result property="age" column="age"/>
 		<collection property="teacherList" column="id" select="com.lixing.ibatis.mapper.TeacherStudentMapper.getTeacherForStudentId"/>
-	</resultMap>	
+	 </resultMap>	
 	<select id="getStudent" resultMap="resultStudentMap_1" parameterType="int">
 		SELECT *
 		FROM t_student
