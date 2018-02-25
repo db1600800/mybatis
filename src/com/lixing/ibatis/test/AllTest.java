@@ -82,7 +82,7 @@ public class AllTest {
 	@Test
 	public void testGetTeacherAndStudent(){
 		TeacherMapper teacherMapper=session.getMapper(TeacherMapper.class);
-		Teacher teacher=teacherMapper.getTeacher(13);
+		Teacher teacher=teacherMapper.getTeacher(1);
 		List<Student> list=teacher.getStudentList();
 		System.out.println(teacher.getId()+"\t"+teacher.getName()+"\t");
 		for(Student student:list){
@@ -94,7 +94,7 @@ public class AllTest {
 	@Test
 	public void testGetStudentAndTeacher(){
 		StudentMapper studentMapper=session.getMapper(StudentMapper.class);
-		Student student=studentMapper.getStudent(14);
+		Student student=studentMapper.getStudent(2);
 		List<Teacher> list=student.getTeacherList();
 		System.out.println(student.getId()+"\t"+student.getName()+"\t"+student.getSex());
 		//for(Teacher s:list){
